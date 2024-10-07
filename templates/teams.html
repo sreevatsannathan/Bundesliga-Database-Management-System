@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teams - Bundesliga Database</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Bundesliga Teams</h1>
+        <form method="POST" action="/teams">
+            <label for="team">Team Name:</label>
+            <input type="text" name="team" id="team">
+            
+            <label for="g_per_90">Goals per 90:</label>
+            <input type="number" step="0.01" name="g_per_90" id="g_per_90">
+            
+            <label for="total_passes_completed">Total Passes Completed:</label>
+            <input type="number" name="total_passes_completed" id="total_passes_completed">
+            
+            <label for="key_passes">Key Passes:</label>
+            <input type="number" name="key_passes" id="key_passes">
+            
+            <label for="passes_in_final_third">Passes in Final Third:</label>
+            <input type="number" name="passes_in_final_third" id="passes_in_final_third">
+            
+            <label for="sort_by">Sort By:</label>
+            <select name="sort_by" id="sort_by">
+                <option value="g_per_90">Goals per 90</option>
+                <option value="total_passes_completed">Total Passes Completed</option>
+                <option value="key_passes">Key Passes</option>
+                <option value="passes_in_final_third">Passes in Final Third</option>
+            </select>
+
+            <label for="order">Order:</label>
+            <select name="order" id="order">
+                <option value="ASC">Ascending</option>
+                <option value="DESC">Descending</option>
+            </select>
+
+            <button type="submit">Search</button>
+        </form>
+
+        <table border="1">
+            <tr>
+                <th>Team Name</th>
+                <th>Goals per 90</th>
+                <th>Total Passes Completed</th>
+                <th>Key Passes</th>
+                <th>Passes in Final Third</th>
+            </tr>
+            {% for team in teams %}
+            <tr>
+                <td>{{ team[0] }}</td>
+                <td>{{ team[1] }}</td>
+                <td>{{ team[2] }}</td>
+                <td>{{ team[3] }}</td>
+                <td>{{ team[4] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

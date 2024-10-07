@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bundesliga Database</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Bundesliga Matches</h1>
+    <form method="POST" action="/">
+        <label for="team">Team:</label>
+        <input type="text" name="team" id="team">
+        
+        <label for="half_time_goals">Half-time Goals:</label>
+        <input type="number" name="half_time_goals" id="half_time_goals">
+        
+        <label for="sort_by">Sort By:</label>
+        <select name="sort_by" id="sort_by">
+            <option value="fthg">Full-time Home Goals</option>
+            <option value="ftag">Full-time Away Goals</option>
+            <option value="hthg">Half-time Home Goals</option>
+            <option value="htag">Half-time Away Goals</option>
+        </select>
+
+        <label for="order">Order:</label>
+        <select name="order" id="order">
+            <option value="ASC">Ascending</option>
+            <option value="DESC">Descending</option>
+        </select>
+
+        <button type="submit">Search</button>
+    </form>
+
+    <table border="1">
+        <tr>
+            <th>Date</th>
+            <th>Home Team</th>
+            <th>Away Team</th>
+            <th>Full-time Home Goals</th>
+            <th>Full-time Away Goals</th>
+            <th>Half-time Home Goals</th>
+            <th>Half-time Away Goals</th>
+        </tr>
+        {% for match in matches %}
+        <tr>
+            <td>{{ match[0] }}</td>
+            <td>{{ match[1] }}</td>
+            <td>{{ match[2] }}</td>
+            <td>{{ match[3] }}</td>
+            <td>{{ match[4] }}</td>
+            <td>{{ match[5] }}</td>
+            <td>{{ match[6] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
